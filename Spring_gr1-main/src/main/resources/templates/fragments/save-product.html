@@ -1,0 +1,41 @@
+<ul>
+  <li th:each="error : ${errors}" th:text="${error}"></li>
+</ul>
+<hr />
+<form method="post" th:action="${actionUri}">
+  <input
+    name="name"
+    placeholder="Product name"
+    th:value="${product != null ? product.getName() : ''}"
+  />
+
+  <input
+    name="price"
+    placeholder="Product price"
+    th:value="${product != null ? product.getPrice() : ''}"
+  />
+
+  <textarea
+    name="desc"
+    placeholder="Product description"
+    rows="3"
+    th:value="${product != null ? product.getDesc() : ''}"
+  >
+  </textarea>
+
+  <input
+    name="imgUri"
+    placeholder="Product image"
+    th:value="${product != null ? product.getImgUri() : ''}"
+  />
+  <select name="category" class="form-control">
+    <option
+      th:each="category : ${categories}"
+      th:selected="${product !=null && product.getCategory() != null && category.getId() == product.getCategory().getId()}"
+      th:text="${category.getName()}"
+      th:value="${category.getId()}"
+    ></option>
+  </select>
+
+  <button>Save</button>
+</form>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div th:replace="~{fragments/main-menu}"></div>
+    <h1 th:text="${product.getName()}"></h1>
+
+    <p>
+      <img th:src="${product.getImgUri()}" alt="" width="100" />
+    </p>
+    <!-- th-żeby zdjecie się zmieniało -->
+
+    <h2>Opis produktu</h2>
+    <span th:text="${product.getDesc()}"></span>
+
+    <span th:text="${product.getPrice()}"></span>PLN
+
+    <span> Category</span>
+    <p th:if="${product.getCategory() != null}" class="card-text">
+      <a
+        th:href="${'/categoryDetail/'+ product.getCategory().getId()}"
+        class="card-link"
+        th:text="${product.getCategory().getName()}"
+      ></a>
+    </p>
+  </body>
+</html>
